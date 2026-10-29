@@ -82,7 +82,7 @@ Open the Vite URL shown in the terminal. The development server proxies API and 
 
 ## Deploy to Vercel and Render
 
-The Render Blueprint in `render.yaml` deploys the API from the `backend` directory. In Render, create a Blueprint from the GitHub repository and set `MONGODB_URI` to the Atlas connection string in the service environment. Render generates `JWT_SECRET` and `ADMIN_SETUP_KEY`; keep both values private. In Atlas Network Access, allow the Render service's outbound IPs, or use the provider's documented network option for your plan.
+The Render Blueprint in `render.yaml` deploys the API from the `backend` directory on Render's free web-service plan. Free instances can sleep when idle and may take a little time to wake up. Set `MONGODB_URI` to the Atlas connection string in the service environment. Render generates `JWT_SECRET` and `ADMIN_SETUP_KEY`; keep both values private. In Atlas Network Access, allow the Render service's outbound IPs, or use the provider's documented network option for your plan.
 
 The Vercel project should use `frontend` as its root directory. `frontend/vercel.json` proxies `/api/*` and `/uploads/*` through the Render API so the browser session cookie remains first-party. After creating the Render service, make sure its service name matches `rewacivicai-api` in `frontend/vercel.json`; if Render assigned a different hostname, update both rewrite destinations to that service's HTTPS URL and redeploy Vercel. Once Vercel assigns the production domain, add that exact origin (for example, `https://your-project.vercel.app`, without a trailing slash) as `CORS_ORIGIN` in the Render service environment, then redeploy/restart the API.
 
