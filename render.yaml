@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: rewacivicai-api
+    runtime: node
+    rootDir: backend
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ADMIN_SETUP_KEY
+        generateValue: true
+      - key: MONGODB_URI
+        sync: false
